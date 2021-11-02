@@ -10,7 +10,6 @@ const ProductSchema = new Schema(
     }    ,
     thumb:{
         type: String,
-        required: [true, 'You must add a thumb pic']
     },
     imgs:{
         type: Array,
@@ -29,8 +28,6 @@ const ProductSchema = new Schema(
     tags:{
         type:Array,
     }
-
-
   },
   { timestamps: true }
 )

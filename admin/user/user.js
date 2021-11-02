@@ -7,6 +7,12 @@ const options = {
         },
         hashPassword:{
             isVisible: false,
+        },
+        createdAt:{
+            isVisible: { list: false, filter: false, show: true, edit: false },
+        },
+        updatedAt:{
+            isVisible: { list: false, filter: false, show: true, edit: false },
         }
     },
     actions:{
@@ -15,6 +21,11 @@ const options = {
                 return  passwordBeforeHook(request);
             },
           },
+        edit:{
+            before: async (request) => {
+                return  passwordBeforeHook(request);
+            },
+        }
     }
  
 };

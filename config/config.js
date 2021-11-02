@@ -3,7 +3,7 @@ const static='./static'
 
 module.exports = {
     DIR : {
-      avatar: `${static}/avatar`,
+      thumb: `${static}/thumb`,
       video: `${static}/video`,
       videoThumb: `${static}/video/thumb`
     },
