@@ -4,7 +4,7 @@ const User = require('../model/user');
 const adminRouter = (admin)=>{
     const router =  buildAuthenticatedRouter(admin,{
         authenticate: async (email, password) => {
-        const user = await User.findOne( {email: email}).select('+password')
+        const user = await User.findOne( {email: email})
         if(! user || !user.isAdmin){
             return  false
         }

@@ -13,12 +13,11 @@ const UserSchema = new Schema(
               /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
               'Please add a valid email'
             ],
+            minlength: [6, 'Must be six characters long'],
           },
-        password: {
+        hashPassword: {
             type: String,
             required: [true, 'Please add a password'],
-            minlength: [6, 'Must be six characters long'],
-            //select: false //find时不会自动加入，需显示select
         },
         isAdmin: { 
             type: Boolean, 
@@ -28,7 +27,7 @@ const UserSchema = new Schema(
 )
 
 UserSchema.methods.matchPassword = async function (enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password)
+    return await bcrypt.compare(enteredPassword, this.hashPassword)
   }
   
 

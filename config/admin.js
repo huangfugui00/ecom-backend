@@ -3,9 +3,9 @@ const AdminBroMongoose = require('admin-bro-mongoose');
 
 AdminBro.registerAdapter(AdminBroMongoose);
 
-const AdminUser =require('../admin/user')
+const AdminUser =require('../admin/user/user')
 // const AdminProduct = require('../model/product')
-const AdminProduct =require('../admin/product')
+const AdminProduct =require('../admin/product/product')
 
 /** @type {import('admin-bro').AdminBroOptions} */
 
