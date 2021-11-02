@@ -7,9 +7,12 @@ const ProductSchema = new Schema(
     price:{
         type:Number,
         required:true
-    }    ,
+    },
     thumb:{
         type: String,
+    },
+    countInStock:{
+        type:Number,
     },
     imgs:{
         type: Array,

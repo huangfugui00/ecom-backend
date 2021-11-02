@@ -11,7 +11,7 @@ const UploadThumbEdit = (props:BasePropertyProps)=>{
     onChange(property.name, files[0])
   }
 
-  const uploadedPhoto = record.params.profilePhotoLocation
+  const uploadedPhoto = record.params.thumb
   const photoToUpload = record.params[property.name]
 
   return (

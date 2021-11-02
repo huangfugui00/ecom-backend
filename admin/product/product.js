@@ -7,9 +7,13 @@ const options = {
         thumb:{
             isVisible: false,
         },
-        imgs:{
-            isVisible: false,
-        },
+        // imgs:{
+        //     components: {
+        //         edit: AdminBro.bundle('./component/uploadThumbEdit.tsx'),
+        //         list: AdminBro.bundle('./component/uploadImageList.tsx'),
+        //         show: AdminBro.bundle('./component/uploadImageList.tsx'),
+        //       },
+        // },
         uploadThumb: {
             components: {
               edit: AdminBro.bundle('./component/uploadThumbEdit.tsx'),

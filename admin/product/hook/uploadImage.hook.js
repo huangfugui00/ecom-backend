@@ -9,7 +9,7 @@ const after = async (response, request, context) => {
   const uploadThumb =  request.payload.uploadThumb;
 
   if (record.isValid() && uploadThumb) {
-    const filePath = path.join(config.DIR.thumb, record.id().toString(), uploadThumb.name);
+    const filePath = path.join(config.DIR.thumb, record.id().toString(), uploadThumb.name).replace(/\\/g,'/');
     await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
 
     var readStream=fs.createReadStream(uploadThumb.path);
