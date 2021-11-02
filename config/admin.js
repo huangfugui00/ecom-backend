@@ -3,30 +3,17 @@ const AdminBroMongoose = require('admin-bro-mongoose');
 
 AdminBro.registerAdapter(AdminBroMongoose);
 
-const User =require('../model/user')
-// const Video =require('../models/video')
-const Product =require('../model/product')
+const AdminUser =require('../admin/user')
+// const AdminProduct = require('../model/product')
+const AdminProduct =require('../admin/product')
 
 /** @type {import('admin-bro').AdminBroOptions} */
+
+
 const options = {
   resources: [
-    {resource:User,
-    options:{
-      properties: {
-        email: {
-           isVisible: {
-             list:true,edit:false,filter:true,show:true 
-           }
-        },
-        password: {
-          type: 'string',
-          isVisible: {
-            list: false, edit: true, filter: false, show: false,
-          },
-        },
-      },
-    }},
-    {resource:Product},
+    AdminProduct,
+    AdminUser,
   ],
 };
 
