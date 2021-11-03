@@ -25,9 +25,10 @@ const ProductSchema = new Schema(
         type: String,
         required: [true, 'You must add a description']
     },
-    category:{
-        type:String,
-    },
+    category: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Category'
+      },
     tags:{
         type:Array,
     }

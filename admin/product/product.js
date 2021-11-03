@@ -14,8 +14,6 @@ const options = {
         uploadImgs:{
             components: {
                 edit: AdminBro.bundle('./component/uploadImgsEdit.tsx'),
-                // list: AdminBro.bundle('./component/uploadImageList.tsx'),
-                // show: AdminBro.bundle('./component/uploadImageList.tsx'),
               },
         },
         uploadThumb: {
@@ -35,12 +33,12 @@ const options = {
     actions:{
         new: {
             after: async (res,req,context) => {
-                return  uploadThumbAfterHook(res,req,context);
+                const modifiedResponse = await uploadThumbAfterHook(res,req,context);
+                return uploadImgsAfterHook(modifiedResponse,req,context);
             }
           },
         edit:{
             after: async (res,req,context) => {
-                // return  uploadThumbAfterHook(res,req,context);
                 const modifiedResponse = await uploadThumbAfterHook(res,req,context);
                 return uploadImgsAfterHook(modifiedResponse,req,context);
             }

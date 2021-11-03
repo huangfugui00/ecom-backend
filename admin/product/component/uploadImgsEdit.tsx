@@ -10,12 +10,9 @@ const UploadImgsEdit = (props:BasePropertyProps)=>{
     onChange(property.name, files)
   }
 
-//   const uploadedImgs = record.params.imgs//当前数据库中存储的图片
-
   const uploadedImgs = Object.keys(record.params)
     .filter(key=>key.startsWith('imgs'))
     .map(key=>record.params[key])
-//   const photoToUpload = record.params[property.name]//选择的图片
   const photoToUpload = Object.keys(record.params).filter(key=>key.startsWith('uploadImgs')).length ?true:false;
 
   return (
