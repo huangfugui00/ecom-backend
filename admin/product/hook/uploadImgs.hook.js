@@ -22,7 +22,6 @@ const after = async (response, request, context) => {
       var readStream=fs.createReadStream(uploadImg.path);
       var writeStream=fs.createWriteStream(filePath);
       readStream.pipe(writeStream);
-
       uploadImgsPath.push(`/${filePath}`)
     }
     

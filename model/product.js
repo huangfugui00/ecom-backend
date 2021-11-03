@@ -13,6 +13,7 @@ const ProductSchema = new Schema(
     },
     countInStock:{
         type:Number,
+        required: [true, 'You must tell me how many count in stock']
     },
     imgs:{
         type: Array,

@@ -9,7 +9,6 @@ DBConnection()
 
 const app = express();
 const admin  = new AdminBro(AdminOption)
-
 app.use(admin.options.rootPath, adminRouter(admin));
 app.use(express.static('./'));
 
