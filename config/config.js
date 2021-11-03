@@ -4,8 +4,7 @@ const static='./static'
 module.exports = {
     DIR : {
       thumb: `${static}/thumb`,
-      video: `${static}/video`,
-      videoThumb: `${static}/video/thumb`
+      imgs: `${static}/imgs`,
     },
     SQL : {
       url: "mongodb://localhost:27017/ecom"
