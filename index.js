@@ -14,9 +14,10 @@ const app = express();
 const admin  = new AdminBro(AdminOption)
 app.use(admin.options.rootPath, adminRouter(admin))
 app.use(express.static('./'))
-app.use(consoleMiddle)
-app.use(express.json())
 app.use(cors())
+
+app.use(express.json())
+app.use(consoleMiddle)
 
 
 const versionOne = (routeName) => `/${routeName}`
