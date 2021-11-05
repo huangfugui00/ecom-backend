@@ -5,6 +5,7 @@ module.exports = {
     DIR : {
       thumb: `${static}/thumb`,
       imgs: `${static}/imgs`,
+      avatar:`${static}/avatar`,
     },
     SQL : {
       url: "mongodb://localhost:27017/ecom"

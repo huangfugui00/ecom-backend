@@ -15,18 +15,7 @@ const FavoriteSchema = new Schema(
       required: true
     },
   },
-  { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true }
+//   { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true }
 )
-
-
-// CommentSchema.post('find', async function(comments) {
-//   for (let comment of comments) {
-//       await comment.populate('userId');
-//   }
-// });
-
-// CommentSchema.post('save', async function(comment) {
-//       await comment.populate('userId');
-// });
 
 module.exports = mongoose.model('Favorite', FavoriteSchema)

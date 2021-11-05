@@ -27,12 +27,14 @@ const productControl = {
         
         const products = await Product.find({})
             .populate('category')
+            .populate('favorite')
 
         Utils.responseClient(res,1,200,'',products);  
     }, 
 
     async getProduct(req,res,next){
         const product = await Product.findById(req.params.id)
+            .populate('comments')
         if (!product) {
             return Utils.responseClient(res,1,404,'产品不存在');
         }

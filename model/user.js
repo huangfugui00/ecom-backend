@@ -4,6 +4,16 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema(
     {
+        username:{
+          type:String,
+          required: [true, 'Please add an username'],
+          unique: true,
+          uniqueCaseInsensitive: true,
+          minlength: 3,
+        },
+        avatar:{
+          type:String,
+        },
         email: {
             type: String,
             required: [true, 'Please add an email'],
@@ -21,7 +31,7 @@ const UserSchema = new Schema(
         },
         isAdmin: { 
             type: Boolean, 
-            default: false 
+            default: false ,
         },
         
     },
@@ -33,5 +43,14 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.hashPassword)
   }
   
+
+// UserSchema.set('toJSON', {
+//   transform: function(req, res, opt) {
+//       delete res['email']
+//       delete res['hashPassword']
+//       delete res['isAdmin']
+//       return res
+//   }
+// })
 
 module.exports = mongoose.model('User', UserSchema)

@@ -3,7 +3,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ProductSchema = new Schema(
-  {
+  {  
+      intro:{
+        type: String,
+        required: [true, 'You must add a intro']
+    },
     price:{
         type:Number,
         required:true
@@ -18,10 +22,7 @@ const ProductSchema = new Schema(
     imgs:{
         type: Array,
     },
-    intro:{
-        type: String,
-        required: [true, 'You must add a intro']
-    },
+  
     description: {
         type: String,
         required: [true, 'You must add a description']
@@ -34,7 +35,7 @@ const ProductSchema = new Schema(
         type:Array,
     }
   },
-  { timestamps: true }
+  { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true }
 )
 
 
@@ -52,6 +53,8 @@ ProductSchema.virtual('favorite', {
     justOne: false,
     count: true,
 })
+
+
 // ProductSchema.statics.findByCateogry =  (category, callback)=> {
 //     var query = this.findOne()
   
