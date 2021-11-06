@@ -8,6 +8,8 @@ const AdminBro  = require('admin-bro');
 const AdminOption = require('./config/admin')
 const adminRouter = require('./route/admin')
 const productRouter = require('./route/product')
+const userRouter = require('./route/user')
+const favoriteRouter = require('./route/favorite')
 DBConnection()
 
 const app = express();
@@ -22,6 +24,9 @@ app.use(consoleMiddle)
 
 const versionOne = (routeName) => `/${routeName}`
 app.use(versionOne('product'), productRouter)
+app.use(versionOne('user'), userRouter)
+app.use(versionOne('favorite'), favoriteRouter)
+
 
 
 const port = process.env.PORT || 3001;

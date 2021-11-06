@@ -1,6 +1,20 @@
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const config = require('../config/config')
 const Schema = mongoose.Schema
+
+const CartSchema = new Schema(
+  {
+    productId:{
+      type: mongoose.Schema.ObjectId,
+      ref: 'Product',
+    },
+    numInCart:{
+      type: Number,
+    }
+  }
+)
 
 const UserSchema = new Schema(
     {
@@ -33,7 +47,9 @@ const UserSchema = new Schema(
             type: Boolean, 
             default: false ,
         },
-        
+        cart:{
+          type: [CartSchema]
+        }
     },
     { timestamps: true }
     
@@ -43,6 +59,11 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.hashPassword)
   }
   
+UserSchema.methods.getSignedJwtToken = function () {
+  return jwt.sign({ id: this._id }, config.JWT.secret, {
+    expiresIn: `${config.JWT.expire_day}d`
+  })
+}
 
 // UserSchema.set('toJSON', {
 //   transform: function(req, res, opt) {

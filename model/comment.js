@@ -31,7 +31,6 @@ const CommentSchema = new Schema(
 CommentSchema.post('find', async function(comments) {
   for (let comment of comments) {
       await comment.populate({ path: 'userId',select: 'username avatar' });
-      await comment.populate('userId');
   }
 });
 
