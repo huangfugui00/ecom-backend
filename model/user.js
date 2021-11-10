@@ -4,17 +4,7 @@ const bcrypt = require('bcryptjs')
 const config = require('../config/config')
 const Schema = mongoose.Schema
 
-const CartSchema = new Schema(
-  {
-    productId:{
-      type: mongoose.Schema.ObjectId,
-      ref: 'Product',
-    },
-    numInCart:{
-      type: Number,
-    }
-  }
-)
+
 
 const UserSchema = new Schema(
     {
@@ -47,9 +37,13 @@ const UserSchema = new Schema(
             type: Boolean, 
             default: false ,
         },
-        cart:{
-          type: [CartSchema]
-        }
+        // cart:{
+        //     type:mongoose.Schema.ObjectId,
+        //     ref:'Cart',
+
+
+        // }
+  
     },
     { timestamps: true }
     

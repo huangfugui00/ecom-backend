@@ -4,7 +4,7 @@ const Auth = require('../middleware/auth')
 
 const router = express.Router()
 
-router.post('/',Favorite.crateFavorite)
-router.post('/check',Favorite.checkFavorite)
+router.post('/',Auth.protect,Favorite.crateFavorite)
+router.post('/check',Auth.protect,Favorite.checkFavorite)
 router.delete('/:id',Auth.protect,Favorite.deleteFavorite)
 module.exports=router

@@ -15,6 +15,9 @@ const DeliverSchema = new Schema(
         phone:{
             type:String,
             required:true,
+        },
+        userId:{
+            type:Schema.ObjectId
         }
     }
 )

@@ -13,15 +13,16 @@ const userControl = {
         if(await User.findOne( {email: userBody.email})){
             return Utils.responseClient(res,0,404,'用户已经存在')
         }
-        // const user = new User(userBody);
-                // hash password
         if (userBody.password) {
             userBody.hashPassword = bcrypt.hashSync(userBody.password, 10);
         }
-        // save user
-        await  User.create(userBody)
-            .catch((err)=>{return Utils.responseClient(res,0,404,'注册失败',err)})
-        Utils.responseClient(res,1,200,'用户创建成功');
+        // create user
+        const user = await  User.create(userBody)
+            .catch((err)=>console.log(err))
+        if(!user){
+            return Utils.responseClient(res,0,404,'数据错误')
+        }
+        Utils.responseClient(res,1,200,'用户创建成功',user);
     },
 
     async login(req, res, next){

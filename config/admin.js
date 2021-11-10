@@ -9,6 +9,7 @@ const AdminCategory =require('../admin/category/category')
 const AdminComment =require('../admin/comment/comment')
 const AdminFavorite =require('../admin/favorite/favorite')
 const AdminDeliver =require('../admin/deliver/deliver')
+const AdminCart =require('../admin/cart/cart')
 // const AdminDeliver = require('../model/deliver')
 
 /** @type {import('admin-bro').AdminBroOptions} */
@@ -21,6 +22,7 @@ const options = {
     AdminCategory,
     AdminComment,
     AdminFavorite,
+    AdminCart,
     AdminDeliver,
   ],
 };

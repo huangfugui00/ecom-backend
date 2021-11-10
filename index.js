@@ -10,6 +10,9 @@ const adminRouter = require('./route/admin')
 const productRouter = require('./route/product')
 const userRouter = require('./route/user')
 const favoriteRouter = require('./route/favorite')
+const commentRouter = require('./route/comment')
+const deliverRouter = require('./route/deliver')
+const cartRouter = require('./route/cart')
 DBConnection()
 
 const app = express();
@@ -26,6 +29,9 @@ const versionOne = (routeName) => `/${routeName}`
 app.use(versionOne('product'), productRouter)
 app.use(versionOne('user'), userRouter)
 app.use(versionOne('favorite'), favoriteRouter)
+app.use(versionOne('comment'), commentRouter)
+app.use(versionOne('deliver'), deliverRouter)
+app.use(versionOne('cart'), cartRouter)
 
 
 

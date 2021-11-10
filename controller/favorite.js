@@ -7,14 +7,14 @@ const favoriteControl = {
             productId:req.body.productId,
             userId:req.user.id,
             })
-            .catch((err)=>{console.log(err)})
+            .catch((err)=>console.log(err))
 
         if(!favorite){
             var body = req.body
             body.userId = req.user.id
             body.productId = req.body.productId
             favorite = await Favorite.create(body)
-                .catch((err)=>{console.log(err)})   
+                .catch((err)=>console.log(err))   
             if(!favorite){
                 return Utils.responseClient(res,0,404,'');
             }
@@ -30,21 +30,12 @@ const favoriteControl = {
             productId:req.body.productId,
             userId:req.user.id,
             })
-            .catch((err)=>{console.log(err)})
-
+            .catch((err)=> console.log(err))
         if(!favorite){
-            var body = req.body
-            body.userId = req.user.id
-            body.productId = req.body.productId
-            favorite = await Favorite.create(body)
-                .catch((err)=>{console.log(err)})   
-            if(!favorite){
-                return Utils.responseClient(res,0,404,'');
-            }
-            return Utils.responseClient(res,1,200,'',favorite);
+            return Utils.responseClient(res,1,200,'favorite不存在',{'exist':false});
         }
         else{
-            return Utils.responseClient(res,1,204,'您已给该商品点过赞了');
+            return Utils.responseClient(res,1,200,'您已给该商品点过赞了',{'exist':true,favorite});
         }
     }, 
 
@@ -60,7 +51,6 @@ const favoriteControl = {
         await favorite.remove()
         Utils.responseClient(res,1,200,'favorite已删除'); 
     }
-
 
     
 }
