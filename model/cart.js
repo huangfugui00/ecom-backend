@@ -24,4 +24,12 @@ const CartSchema = new Schema(
 )
 
 
+CartSchema.post('find', async function(carts) {
+    for (let cart of carts) {
+        await cart.populate({ path: 'productId'});
+    }
+  });
+  
+
+
   module.exports = mongoose.model('Cart', CartSchema)

@@ -50,8 +50,18 @@ const cartControl = {
         return Utils.responseClient(res,1,200,'Cart删除成功',result);  
     },
 
-   
-    
+    async syncCart(req,res, next){
+        try{
+            for(let i =0;i<req.body.data.length;i++){
+                const product = req.body.data[i]
+                await Cart.findOneAndUpdate({productId:product.id,userId:req.user.id},{numInCart:product.numInCart},{ runValidators: true })
+            }
+            return Utils.responseClient(res,1,202,'')
+        }
+        catch{
+            return Utils.responseClient(res,0,404,'')
+        }
+    }
 }
 
 

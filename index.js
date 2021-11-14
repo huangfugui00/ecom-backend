@@ -1,9 +1,11 @@
 const express = require('express')
+const morgan = require('morgan') 
+var fs = require('fs')
+var path = require('path')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const DBConnection = require('./config/db')
 const consoleMiddle = require('./middleware/consoleMid')
-
 const AdminBro  = require('admin-bro');
 const AdminOption = require('./config/admin')
 const adminRouter = require('./route/admin')
@@ -13,9 +15,17 @@ const favoriteRouter = require('./route/favorite')
 const commentRouter = require('./route/comment')
 const deliverRouter = require('./route/deliver')
 const cartRouter = require('./route/cart')
+
+
+
 DBConnection()
 
 const app = express();
+
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+// setup the logger
+app.use(morgan('combined', { stream: accessLogStream }))
+
 const admin  = new AdminBro(AdminOption)
 app.use(admin.options.rootPath, adminRouter(admin))
 app.use(express.static('./'))
@@ -32,7 +42,10 @@ app.use(versionOne('favorite'), favoriteRouter)
 app.use(versionOne('comment'), commentRouter)
 app.use(versionOne('deliver'), deliverRouter)
 app.use(versionOne('cart'), cartRouter)
-
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(400).send(err.message)
+})
 
 
 const port = process.env.PORT || 3001;

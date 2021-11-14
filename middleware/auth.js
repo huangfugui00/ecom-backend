@@ -15,7 +15,9 @@ const Auth={
             token = req.headers.authorization.split(' ')[1]
         }
         if (!token) {
-            return  Utils.responseClient(res,401,'请先登录再访问')
+            var err = new Error('error,login before');
+            err.status = 400;
+            next(err);
         }
         try {
             // Verify token
@@ -23,7 +25,10 @@ const Auth={
             req.user = await User.findById(decoded.id)
             next()
           } catch (err) {
-            return  Utils.responseClient(res,401,'请先登录再访问',err)
+            var err = new Error('error,login before');
+            err.status = 400;
+            next(err);
+            
         }
     },
 
