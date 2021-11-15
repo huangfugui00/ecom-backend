@@ -16,6 +16,7 @@ const commentRouter = require('./route/comment')
 const deliverRouter = require('./route/deliver')
 const cartRouter = require('./route/cart')
 const payRouter = require('./route/pay')
+const orderRouter = require('./route/order')
 
 
 
@@ -44,6 +45,7 @@ app.use(versionOne('comment'), commentRouter)
 app.use(versionOne('deliver'), deliverRouter)
 app.use(versionOne('cart'), cartRouter)
 app.use(versionOne('pay'), payRouter)
+app.use(versionOne('order'), orderRouter)
 app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.status(400).send(err.message)

@@ -4,6 +4,10 @@ const Schema = mongoose.Schema
 
 const DeliverSchema = new Schema(
     {
+        default:{
+            type:Boolean,
+            default:false,
+        },
         address:{
             type:String,
             required:true
@@ -17,7 +21,9 @@ const DeliverSchema = new Schema(
             required:true,
         },
         userId:{
-            type:Schema.ObjectId
+            type: mongoose.Schema.ObjectId,
+            ref: 'User',
+            required: true
         }
     }
 )
