@@ -3,7 +3,7 @@ const Utils={
     responseClient(res,status=1 ,httpCode = 200, message = '服务端异常', data = {}) {
         let responseData = {};
         responseData.status = status;
-        responseData.message = message;
+        responseData.statusText = message;
         responseData.data = data;
         res.status(httpCode).json(responseData);
     },

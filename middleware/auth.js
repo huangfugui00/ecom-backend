@@ -15,19 +15,15 @@ const Auth={
             token = req.headers.authorization.split(' ')[1]
         }
         if (!token) {
-            var err = new Error('error,login before');
-            err.status = 400;
-            next(err);
-        }
+            return res.status(401).send("A token is required for authentication");
+        }   
         try {
             // Verify token
             const decoded = jwt.verify(token, config.JWT.secret)
             req.user = await User.findById(decoded.id)
             next()
           } catch (err) {
-            var err = new Error('error,login before');
-            err.status = 400;
-            next(err);
+            return res.status(401).send("The token is wrong");
             
         }
     },

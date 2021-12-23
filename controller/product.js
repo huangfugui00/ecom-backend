@@ -1,6 +1,6 @@
 const Utils = require('../utils/util')
 const Product = require('../model/product')
-
+const Favorite = require('../controller/favorite') 
 
 const productControl = {
     async getProducts(req,res,next){

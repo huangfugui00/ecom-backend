@@ -4,13 +4,13 @@ const Schema = mongoose.Schema
 
 const DeliverSchema = new Schema(
     {
-        default:{
-            type:Boolean,
-            default:false,
-        },
         address:{
             type:String,
             required:true
+        },
+        default:{
+            type:Boolean,
+            default:false,
         },
         person:{
             type:String,
@@ -29,3 +29,4 @@ const DeliverSchema = new Schema(
 )
 
 module.exports = mongoose.model('Deliver', DeliverSchema)
+// module.exports = mongoose.model('Deliver', DeliverSchema)

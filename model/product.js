@@ -55,16 +55,5 @@ ProductSchema.virtual('favorite', {
 })
 
 
-// ProductSchema.statics.findByCateogry =  (category, callback)=> {
-//     var query = this.findOne()
-  
-//     Category.findOne({'title': category}, function (error, category) {
-//       query.where(
-//         {title: category._id}
-//       ).exec(callback);
-//     })
-//     return query
-//   }
-
 
 module.exports = mongoose.model('Product', ProductSchema)

@@ -2,6 +2,15 @@ const Utils = require('../utils/util')
 const Favorite = require('../model/favorite')
 
 const favoriteControl = {
+    async getFavorite(req,res,next){
+        const favorites = await Favorite.find({userId:req.user.id})
+                .catch(err=>console.log(err))
+        if(!favorites){
+            return Utils.responseClient(res,0,404,'');
+        }
+        Utils.responseClient(res,1,200,'',favorites);  
+    },
+
     async crateFavorite(req,res,next){
         let favorite = await Favorite.findOne({
             productId:req.body.productId,

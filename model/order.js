@@ -9,13 +9,18 @@ const productInOrderSchema = new Schema(
             ref: 'Product',
             required:true
         },
-        num:{
+        numInCart:{
            type:Number,
            required:true
         }
     }
-   
 )
+
+productInOrderSchema.post('find', async function(products) {
+    for (let product of products) {
+        await product.populate({ path: 'product' });
+    }
+  });
 
 const OrderSchema = new Schema(
     {
@@ -24,10 +29,10 @@ const OrderSchema = new Schema(
             enum : ['unPay','pay'],
             default: 'unPay',
         },
-        delivery:{
+        deliver:{
             type: mongoose.Schema.ObjectId,
             ref: 'Deliver',
-            required:true,
+            required: true
         },
         products:{
             type:[productInOrderSchema]
